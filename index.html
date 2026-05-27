@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lee - 外贸业务员</title>
+<style>
+  :root {
+    --bg: #fafaf9;
+    --card: #ffffff;
+    --text: #1c1c1e;
+    --muted: #6e6e73;
+    --accent: #2563eb;
+    --border: #e5e5e5;
+    --radius: 16px;
+    --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 48px 0 40px;
+  }
+
+  .avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: #dbeafe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: var(--accent);
+    margin: 0 auto 20px;
+    font-weight: 600;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    margin-bottom: 4px;
+  }
+
+  .hero .role {
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  /* Section cards */
+  .section {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 28px 28px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+
+  .section h2 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section h2 .icon {
+    font-size: 20px;
+  }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .about-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .about-item .label {
+    font-size: 13px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .about-item .value {
+    font-size: 14px;
+  }
+
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .tag {
+    font-size: 13px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    background: #f4f4f5;
+    color: var(--text);
+  }
+
+  /* Contact */
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: var(--bg);
+    text-decoration: none;
+    color: var(--text);
+    transition: background .15s;
+  }
+
+  .contact-item:hover {
+    background: #e8e8ed;
+  }
+
+  .contact-item .c-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .c-icon.wechat  { background: #e6f7e6; color: #07c160; }
+  .c-icon.email   { background: #fef3c7; color: #f59e0b; }
+  .c-icon.whatsapp{ background: #dcfce7; color: #25d366; }
+  .c-icon.linkedin{ background: #dbeafe; color: #0a66c2; }
+  .c-icon.phone   { background: #fce7f3; color: #ec4899; }
+  .c-icon.skype   { background: #e0f2fe; color: #00aff0; }
+
+  /* QR Code */
+  .qr-wrapper {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .qr-card {
+    text-align: center;
+  }
+
+  .qr-placeholder {
+    width: 140px;
+    height: 140px;
+    background: var(--bg);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--muted);
+    border: 2px dashed var(--border);
+    margin-bottom: 8px;
+  }
+
+  .qr-card .qr-label {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* Audio / Casual talk */
+  .audio-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .audio-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: var(--bg);
+  }
+
+  .audio-card .episode {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+
+  .audio-card .title {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .audio-card .play-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity .15s;
+  }
+
+  .audio-card .play-btn:hover { opacity: .85; }
+
+  .audio-card .info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .audio-card .duration {
+    font-size: 13px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  audio { width: 100%; margin-top: 8px; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 32px 0 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 500px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .qr-wrapper { justify-content: center; }
+    .container { padding: 32px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="avatar">Lee</div>
+    <h1>Lee</h1>
+    <p class="role">外贸业务员 · International Trade Specialist</p>
+  </div>
+
+  <!-- 自我介绍 -->
+  <div class="section">
+    <h2><span class="icon">👋</span> 自我介绍</h2>
+    <p style="font-size:15px;margin-bottom:18px;color:var(--text);">
+      你好！我是 Lee，一名深耕外贸行业多年的业务员。擅长客户开发、商务谈判与供应链管理，服务过欧美、东南亚等多个市场的客户。始终相信真诚和专业是成交的基石。
+    </p>
+    <div class="about-grid">
+      <div class="about-item">
+        <span class="label">行业</span>
+        <span class="value">外贸 / 国际贸易</span>
+      </div>
+      <div class="about-item">
+        <span class="label">经验</span>
+        <span class="value">5+ 年</span>
+      </div>
+      <div class="about-item">
+        <span class="label">语言</span>
+        <span class="value">中文 / English</span>
+      </div>
+      <div class="about-item">
+        <span class="label">所在地</span>
+        <span class="value">中国</span>
+      </div>
+    </div>
+    <div class="about-tags">
+      <span class="tag">客户开发</span>
+      <span class="tag">商务谈判</span>
+      <span class="tag">供应链管理</span>
+      <span class="tag">跟单履约</span>
+      <span class="tag">市场调研</span>
+      <span class="tag">跨境电商</span>
+    </div>
+  </div>
+
+  <!-- 联系方式 -->
+  <div class="section">
+    <h2><span class="icon">📬</span> 联系方式</h2>
+    <div class="contact-list">
+      <a class="contact-item" href="mailto:1227269174@qq.com">
+        <span class="c-icon email">✉</span>
+        <span>1227269174@qq.com</span>
+      </a>
+      <div class="contact-item">
+        <span class="c-icon wechat">💬</span>
+        <span>微信：Lee010117</span>
+      </div>
+      <div class="contact-item">
+        <span class="c-icon phone">📱</span>
+        <span>电话：扫码或邮件联系获取</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 二维码区域 -->
+  <div class="section">
+    <h2><span class="icon">📱</span> 扫码联系我</h2>
+    <div class="qr-wrapper">
+      <div class="qr-card">
+        <div class="qr-placeholder">
+          <span>微信二维码<br>（扫码添加）</span>
+        </div>
+        <p class="qr-label">微信 WeChat</p>
+      </div>
+      <div class="qr-card">
+        <div class="qr-placeholder">
+          <span>WhatsApp 二维码<br>（扫码添加）</span>
+        </div>
+        <p class="qr-label">WhatsApp</p>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:16px;">
+      将你的二维码图片替换上方占位区域，建议尺寸：280×280px
+    </p>
+  </div>
+
+  <!-- 闲聊口播 -->
+  <div class="section">
+    <h2><span class="icon">🎙</span> 闲聊口播</h2>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:18px;">
+      工作中积累的一些外贸心得、行业观察和日常碎碎念，欢迎收听。
+    </p>
+    <div class="audio-list">
+      <div class="audio-card">
+        <button class="play-btn" onclick="toggleAudio(this, 'audio1')">▶</button>
+        <div class="info">
+          <p class="episode">EP.01</p>
+          <p class="title">外贸新人如何找到第一个客户</p>
+        </div>
+        <span class="duration">03:24</span>
+      </div>
+      <audio id="audio1" src="" style="display:none;"></audio>
+
+      <div class="audio-card">
+        <button class="play-btn" onclick="toggleAudio(this, 'audio2')">▶</button>
+        <div class="info">
+          <p class="episode">EP.02</p>
+          <p class="title">展会谈判中我踩过的三个坑</p>
+        </div>
+        <span class="duration">05:17</span>
+      </div>
+      <audio id="audio2" src="" style="display:none;"></audio>
+
+      <div class="audio-card">
+        <button class="play-btn" onclick="toggleAudio(this, 'audio3')">▶</button>
+        <div class="info">
+          <p class="episode">EP.03</p>
+          <p class="title">东南亚市场 vs 欧美市场的区别</p>
+        </div>
+        <span class="duration">04:42</span>
+      </div>
+      <audio id="audio3" src="" style="display:none;"></audio>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:16px;">
+      上传你的音频文件（.mp3），并更新 src 地址即可播放
+    </p>
+  </div>
+
+  <div class="footer">
+    © 2025 Lee · 期待与你合作
+  </div>
+
+</div>
+
+<script>
+function toggleAudio(btn, audioId) {
+  const audio = document.getElementById(audioId);
+  const allAudio = document.querySelectorAll('audio');
+  const allBtns = document.querySelectorAll('.play-btn');
+
+  allAudio.forEach(a => { if (a !== audio) { a.pause(); a.currentTime = 0; } });
+  allBtns.forEach(b => { if (b !== btn) b.textContent = '▶'; });
+
+  if (audio.paused) {
+    if (!audio.src || audio.src === window.location.href) {
+      alert('请先设置音频文件路径：替换 audio 标签的 src 属性');
+      return;
+    }
+    audio.play();
+    btn.textContent = '⏸';
+  } else {
+    audio.pause();
+    btn.textContent = '▶';
+  }
+}
+</script>
+
+</body>
+</html>
