@@ -16,6 +16,9 @@ out/
 # IDE
 .vscode/
 .idea/
+
+# Claude
+.claude/
 *.swp
 *.swo
 
